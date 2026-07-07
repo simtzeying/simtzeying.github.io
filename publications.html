@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications — Dr. Tze Ying Sim</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Filter bar */
+    .pub-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.75rem;
+    }
+    .pub-filter-btn {
+      font-size: 12px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 0.5px solid var(--border-light);
+      background: var(--bg-white);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .pub-filter-btn:hover { background: var(--bg-surface); }
+    .pub-filter-btn.active { background: var(--blue-light); color: var(--blue-dark); border-color: transparent; }
+
+    /* Year heading */
+    .pub-year-head {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin: 1.5rem 0 0;
+      padding-bottom: 0.4rem;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+
+    /* Publication entries */
+    .pub-list { display: flex; flex-direction: column; }
+    .pub-entry {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 0.9rem 0;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .pub-entry:last-child { border-bottom: none; }
+
+    .pub-type-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .dot-journal  { background: var(--teal); }
+    .dot-conf     { background: var(--blue); }
+    .dot-chapter  { background: #8B5CF6; }
+    .dot-review   { background: var(--amber-mid); }
+    .dot-media    { background: #EC4899; }
+    .dot-pending  { background: var(--border-mid); }
+
+    .pub-body { flex: 1; min-width: 0; }
+    .pub-type-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .label-journal  { color: var(--teal-mid); }
+    .label-conf     { color: var(--blue-mid); }
+    .label-chapter  { color: #7C3AED; }
+    .label-review   { color: var(--amber-mid); }
+    .label-media    { color: #BE185D; }
+    .label-pending  { color: var(--text-tertiary); }
+
+    .pub-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; line-height: 1.5; }
+    .pub-title.pending { color: var(--text-secondary); font-weight: 400; font-style: italic; }
+    .pub-authors { font-size: 12px; color: var(--text-tertiary); margin-bottom: 3px; line-height: 1.55; }
+    .pub-venue { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+    .pub-note { font-size: 11px; color: var(--amber-mid); margin-top: 4px; font-style: italic; }
+
+    .pub-actions { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; flex-shrink: 0; padding-left: 8px; padding-top: 2px; }
+    .pub-link-btn {
+      font-size: 11px;
+      color: var(--blue-mid);
+      white-space: nowrap;
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 3px 8px;
+      background: var(--bg-white);
+      transition: background 0.15s;
+    }
+    .pub-link-btn:hover { background: var(--blue-light); text-decoration: none; }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .legend-label { font-size: 12px; color: var(--text-secondary); }
+
+    /* Scholar CTA */
+    .scholar-band {
+      background: var(--blue-light);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+    }
+    .scholar-band p { font-size: 13px; color: var(--blue-dark); }
+
+    @media (max-width: 680px) {
+      .pub-entry { flex-direction: column; gap: 6px; }
+      .pub-actions { flex-direction: row; align-items: flex-start; padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Assoc. Prof. Ts. Dr.–Ing. Sim, Tze Ying <span>| Sunway University</span></div>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research &amp; Projects</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="publications.html" class="active">Publications</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="container">
+
+    <p class="breadcrumb"><a href="index.html">Home</a> › <span>Publications</span></p>
+
+    <div class="accent-bar blue"></div>
+    <h1 class="page-title">Publications</h1>
+    <p class="page-mission">A record of published work spanning computing education, sustainability education, blended learning, building information modelling, and engineering education — from 2007 to present.</p>
+
+    <div class="stat-bar">
+      <div class="stat-chip">
+        <div class="stat-num">35+</div>
+        <div class="stat-lbl">Total publications</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-num">9</div>
+        <div class="stat-lbl">Journal articles</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-num">20</div>
+        <div class="stat-lbl">Conference papers</div>
+      </div>
+      <div class="stat-chip">
+        <div class="stat-num">4</div>
+        <div class="stat-lbl">Book chapters</div>
+      </div>
+    </div>
+
+    <!-- Google Scholar -->
+    <div class="scholar-band">
+      <p>For citations, h-index, and full citation metrics, see Google Scholar.</p>
+      <a href="https://scholar.google.com/citations?user=vHaWs4kAAAAJ&hl=en" target="_blank" class="btn btn-primary" style="flex-shrink:0;">Google Scholar →</a>
+    </div>
+
+    <!-- Filter -->
+    <div class="pub-filter-bar">
+      <button class="pub-filter-btn active" onclick="filterPubs('all', this)">All</button>
+      <button class="pub-filter-btn" onclick="filterPubs('journal', this)">Journal articles</button>
+      <button class="pub-filter-btn" onclick="filterPubs('conf', this)">Conference papers</button>
+      <button class="pub-filter-btn" onclick="filterPubs('chapter', this)">Book chapters</button>
+      <button class="pub-filter-btn" onclick="filterPubs('review', this)">Under review</button>
+      <button class="pub-filter-btn" onclick="filterPubs('media', this)">Media writing</button>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal);"></div><span class="legend-label">Journal article</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blue);"></div><span class="legend-label">Conference paper</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#8B5CF6;"></div><span class="legend-label">Book chapter</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber-mid);"></div><span class="legend-label">Under review / pre-print</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#EC4899;"></div><span class="legend-label">Media writing</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--border-mid);"></div><span class="legend-label">In preparation</span></div>
+    </div>
+
+    <!-- ===== PUBLICATION LIST ===== -->
+    <div id="pub-container">
+
+      <!-- 2026 -->
+      <p class="pub-year-head" data-year="2026">2026</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">Unplugged but Empowered: Investigating the Impact of 3Ps on Computational Thinking Activities</p>
+            <p class="pub-authors">Sakinah, I., Sim, T. Y., Talib, C. A., &amp; Lau, S. L.</p>
+            <p class="pub-venue">IEEE Access · 2026</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="review">
+          <div class="pub-type-dot dot-review"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-review">Under Peer Review · Pre-print Available</p>
+            <p class="pub-title">Unplugged Computational Thinking (CT) Activities for Scalable and Inclusive STEM Education: a study across two developing countries, Malaysia and El Salvador</p>
+            <p class="pub-authors">Sim, T. Y., Vargas, M. R. R., Valle, D. A., &amp; Ramis, T.</p>
+            <p class="pub-venue">Springer Nature · Submitted 2026 · Currently under peer review</p>
+            <p class="pub-note">Pre-print publicly available</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">Pre-print →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2025 -->
+      <p class="pub-year-head" data-year="2025">2025</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">Perceived CAP (Cognitive, Affective, and Psychomotor) of Online versus Physical (F2F) STEM Laboratory Session in Malaysian Higher Education</p>
+            <p class="pub-authors">Sim, T. Y., Mun, N. K., Ab Rahim, A. A., Addi, M. M., bin Abdul Rahman, A. F. N., &amp; Cheong, A. C. H.</p>
+            <p class="pub-venue">2025 · Venue to be confirmed</p>
+          </div>
+        </div>
+
+        <div class="pub-entry" data-type="chapter">
+          <div class="pub-type-dot dot-chapter"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-chapter">Book Chapter</p>
+            <p class="pub-title">SustHack: Hackathons as a model of citizen participation in innovating for sustainable urban development</p>
+            <p class="pub-authors">Adisa, M., Oyedeji, S., Lau, S., Sim, T., &amp; Porras, J.</p>
+            <p class="pub-venue">Routledge Taylor and Francis · 2025</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Learning By Doing: Demonstrating Sustainability Mindset in ICT Education through Hackathons</p>
+            <p class="pub-authors">Adisa, M. O., Oyedeji, S., Porras, J., Lau, S. L., Sim, T. Y., &amp; Ajagbe, T. T.</p>
+            <p class="pub-venue">11th International Conference on ICT for Sustainability (ICT4S) · 2025 · pp. 187–</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2024 -->
+      <p class="pub-year-head" data-year="2024">2024</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">Impact of building information modelling and advanced technologies in the AEC industry: a contemporary review and future directions</p>
+            <p class="pub-authors">Biswas, H., Sim, T., &amp; Lau, S.</p>
+            <p class="pub-venue">Journal of Building Engineering · 82, 108165 · 2024</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">Factors Influencing Undergraduate Students' Online Learning Outcomes: A Structural Equation Modeling</p>
+            <p class="pub-authors">Abdullah, M., Tan, S., Samsudin, M., Sim, T., &amp; Fung, C.</p>
+            <p class="pub-venue">SAGE Open · 14(2), 21582440241261834 · 2024</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">Undergraduates' perception, engagement and learning experience in online learning amid Covid-19 pandemic</p>
+            <p class="pub-authors">Tan, S., Ooi, L., Ng, L., &amp; Sim, T.</p>
+            <p class="pub-venue">International Journal of Instruction · 17(2), 401–418 · 2024</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">Integrated Framework for the Implementation of Visual Programming Language in Science Experiment for Secondary School</p>
+            <p class="pub-authors">Shuen, A., Talib, C., Osman, S., Sim, T., Ahmad, I., Anggoro, S., Erna, M., &amp; Fah, L.</p>
+            <p class="pub-venue">Indian Journal of Information Sources and Services · 2024</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2023 -->
+      <p class="pub-year-head" data-year="2023">2023</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">Online learning engagement factors of undergraduate students' learning outcomes: effects on learning satisfaction and performance</p>
+            <p class="pub-authors">Nagaratnam, S., Sim, T., Tan, S., &amp; Leong, H.</p>
+            <p class="pub-venue">International Journal of Emerging Technologies in Learning (iJET) · 18(23), 39–58 · 2023</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">An Instrument to Measure Perceived Cognitive, Affective, and Psychomotor (CAP) Learning for Online Laboratory in Technology and Engineering Courses</p>
+            <p class="pub-authors">Sim, T., Ng, K., Rahim, A., Addi, M., &amp; Osman, M.</p>
+            <p class="pub-venue">Pertanika Journal of Science &amp; Technology · 31(4) · 2023</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Computational Thinking Activities in High Schools to Enhance Interest and Skills in Programming</p>
+            <p class="pub-authors">Ahmad, I., Sim, T., Talib, C., &amp; Lau, S.</p>
+            <p class="pub-venue">IEEE International Conference on Teaching, Assessment and Learning for Engineering (TALE) · 2023 · pp. 1–8</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Effectiveness of hackathons to cultivate a sustainability mindset among engineering and computing students</p>
+            <p class="pub-authors">Lau, S., Sim, T., Adisa, M., &amp; Porras, J.</p>
+            <p class="pub-venue">IEEE International Conference on Teaching, Assessment and Learning for Engineering (TALE) · 2023</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Unified Theory Acceptance and Use of Technology Against Unplugged Computational Thinking Activities</p>
+            <p class="pub-authors">Ahmad, I., Sim, T., &amp; Talib, C.</p>
+            <p class="pub-venue">IEEE International Conference on Computing (ICOCO) · 2023 · pp. 357–362</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Exploring Potential Drivers Influencing BIM Adoption in the AEC Industry: A Systematic Approach</p>
+            <p class="pub-authors">Biswas, H., Sim, T., &amp; Lau, S.</p>
+            <p class="pub-venue">IEEE International Conference on Computing (ICOCO) · 2023 · pp. 124–129</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2022 -->
+      <p class="pub-year-head" data-year="2022">2022</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Review on challenges and solutions in novice programming education</p>
+            <p class="pub-authors">Sim, T., &amp; Lau, S.</p>
+            <p class="pub-venue">IEEE International Conference on Computing (ICOCO) · 2022 · pp. 55–61</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Impact of digitalization in construction: enriching as-built facilities and operations using BIM</p>
+            <p class="pub-authors">Biswas, H., Lau, S., &amp; Sim, T.</p>
+            <p class="pub-venue">IEEE International Conference on Computing (ICOCO) · 2022 · pp. 346–351</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2021 -->
+      <p class="pub-year-head" data-year="2021">2021</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Unplugged Computational Thinking Activities Framework Development for Novice Programmer</p>
+            <p class="pub-authors">Sim, T., Teow, M., &amp; Lau, S.</p>
+            <p class="pub-venue">IEEE International Conference on Computing (ICOCO) · 2021 · pp. 297–302</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="chapter">
+          <div class="pub-type-dot dot-chapter"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-chapter">Book Chapter</p>
+            <p class="pub-title">Student Feedback On Rapid Adaptation Of Online Delivery Learning During The Covid-19 Pandemic: Learning Points Towards Better Future Practice</p>
+            <p class="pub-authors">Lau, S., Ng, A., Sim, T., &amp; Veerakumarasivam, A.</p>
+            <p class="pub-venue">Higher Education As An Enterprise — Embedding The Quality Assurance Culture · 2021 · p. 169</p>
+          </div>
+        </div>
+
+        <div class="pub-entry" data-type="chapter">
+          <div class="pub-type-dot dot-chapter"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-chapter">Book Chapter</p>
+            <p class="pub-title">Transition Due To Covid-19: Insights Into What Is Important From The Perspective Of The Management, Faculty Members, And Students</p>
+            <p class="pub-authors">Sim, T., &amp; Dewika, M.</p>
+            <p class="pub-venue">Higher Education As An Enterprise — Embedding The Quality Assurance Culture · 2021 · p. 28</p>
+          </div>
+        </div>
+
+        <div class="pub-entry" data-type="chapter">
+          <div class="pub-type-dot dot-chapter"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-chapter">Book Chapter</p>
+            <p class="pub-title">Advantages And Challenges Of Interdepartmental Team Teaching: A Case Study</p>
+            <p class="pub-authors">Sim, T., &amp; Ng, B.</p>
+            <p class="pub-venue">Higher Education As An Enterprise — Embedding The Quality Assurance Culture · 2021 · p. 1</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2020 -->
+      <p class="pub-year-head" data-year="2020">2020</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Feedback of university students on online delivery learning during the COVID-19 pandemic period</p>
+            <p class="pub-authors">Lau, S., &amp; Sim, T.</p>
+            <p class="pub-venue">IEEE Conference on e-Learning, e-Management and e-Services (IC3e) · 2020 · pp. 13–18</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Evaluation of a Design Thinking MOOC: A Preliminary Investigation</p>
+            <p class="pub-authors">Sim, T., &amp; Lau, S.</p>
+            <p class="pub-venue">IEEE Conference on e-Learning, e-Management and e-Services (IC3e) · 2020 · pp. 7–12</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="media">
+          <div class="pub-type-dot dot-media"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-media">Media Writing · Opinion</p>
+            <p class="pub-title">Grit and growth mindset in the time of pandemic</p>
+            <p class="pub-authors">Sim, T.</p>
+            <p class="pub-venue">The Edge Malaysia · 7 September 2020 · p. 48</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2019 -->
+      <p class="pub-year-head" data-year="2019">2019</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Thinking in imperative or objects? A study on how novice programmer thinks when it comes to designing an application</p>
+            <p class="pub-authors">Sim, T.</p>
+            <p class="pub-venue">IEEE International Conference on Engineering, Technology and Education (TALE) · 2019 · pp. 1–7</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2018 -->
+      <p class="pub-year-head" data-year="2018">2018</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Online Tools to Support Novice Programming: A Systematic Review</p>
+            <p class="pub-authors">Sim, T., &amp; Lau, S.</p>
+            <p class="pub-venue">IEEE International Conference on e-Learning, e-Management and e-Services (IC3e) · 2018</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2017 -->
+      <p class="pub-year-head" data-year="2017">2017</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Online supported learning and threshold concepts in novice programming</p>
+            <p class="pub-authors">Sim, T.</p>
+            <p class="pub-venue">IEEE Conference on e-Learning, e-Management and e-Services (IC3e) · 2017 · pp. 85–90</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2015 -->
+      <p class="pub-year-head" data-year="2015">2015</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Exploration on the impact of online supported methods for novice programmers</p>
+            <p class="pub-authors">Sim, T.</p>
+            <p class="pub-venue">IEEE Conference on e-Learning, e-Management and e-Services (IC3e) · 2015 · pp. 158–162</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2014 -->
+      <p class="pub-year-head" data-year="2014">2014</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">Design and Development of a Supported Tiered Software for Teaching and Learning Using a Connected Mobile Learning Application</p>
+            <p class="pub-authors">Sim, T., Lau, S., Zipf, P., &amp; Kimm, K.</p>
+            <p class="pub-venue">World Applied Sciences Journal · 30 (Innovation Challenges in Multidisciplinary Research &amp; Practice), pp. 247–255 · 2014</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="journal">
+          <div class="pub-type-dot dot-journal"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-journal">Journal Article</p>
+            <p class="pub-title">Improving Students Engagement through Social Media: A Case Study of a Private University in Malaysia Using Facebook</p>
+            <p class="pub-authors">Sim, T., Naidu, D., &amp; Apparasamy, D.</p>
+            <p class="pub-venue">International Journal of e-Education, e-Business, e-Management and e-Learning · 4(6), 396–409 · 2014</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2013 -->
+      <p class="pub-year-head" data-year="2013">2013</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Designing Connected Mobile Learning Apps for Higher Education Institutions Teaching and Learning</p>
+            <p class="pub-authors">Sim, T., Lau, S., Zipf, P., &amp; Kimm, K.</p>
+            <p class="pub-venue">Innovation Challenges in Multidisciplinary Research &amp; Practice (ICMRP 2013) · p. 151</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2010 -->
+      <p class="pub-year-head" data-year="2010">2010</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Reviews and findings on implementing active learning in a large class environment for mechatronics and computer science students</p>
+            <p class="pub-authors">Sim, T., &amp; Vogel-Heuser, B.</p>
+            <p class="pub-venue">IEEE EDUCON 2010 Conference · pp. 1563–1572</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Effectiveness of the methods for engineering courses in a large non-homogenous class setting: With regards to the specific disciplines — Computer Science and Mechatronics in learning Embedded System</p>
+            <p class="pub-authors">Sim, T.</p>
+            <p class="pub-venue">2010 · Venue to be confirmed</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2009 -->
+      <p class="pub-year-head" data-year="2009">2009</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Lessons learnt from Interdisciplinary Class between Mechatronics and Computer Science students</p>
+            <p class="pub-authors">Sim, T., &amp; Vogel-Heuser, B.</p>
+            <p class="pub-venue">International Journal of Arts &amp; Sciences Conferences (IJAS) · Gottenheim, Germany · 2009</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Benefits of an interdisciplinary modular concept in automation of machine and plant manufacturing</p>
+            <p class="pub-authors">Sim, T., Li, F., &amp; Vogel-Heuser, B.</p>
+            <p class="pub-venue">IFAC Proceedings Volumes · 42(4), 894–899 · 2009</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2008 -->
+      <p class="pub-year-head" data-year="2008">2008</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Modules, version and variability management in automation engineering of machine and plant manufacturing</p>
+            <p class="pub-authors">Sim, T., Li, F., &amp; Vogel-Heuser, B.</p>
+            <p class="pub-venue">IEEE International Conference on Emerging Technologies and Factory Automation (ETFA) · 2008 · pp. 46–49</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- 2007 -->
+      <p class="pub-year-head" data-year="2007">2007</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="conf">
+          <div class="pub-type-dot dot-conf"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-conf">Conference Paper</p>
+            <p class="pub-title">Evaluation und Anwendung von Variantenmodellierung im Maschinen- und Anlagenbau zur Verbesserung der Modellstruktur und Erhöhung der Wiederverwertung</p>
+            <p class="pub-authors">Vogel-Heuser, B., Sim, T., Katzke, U., Wannagat, A., &amp; Jochem, R.</p>
+            <p class="pub-venue">VDI Berichte · 1980, 107 · 2007</p>
+          </div>
+          <div class="pub-actions"><a href="#" class="pub-link-btn">DOI →</a></div>
+        </div>
+
+      </div>
+
+      <!-- In Preparation -->
+      <p class="pub-year-head">In Preparation</p>
+      <div class="pub-list">
+
+        <div class="pub-entry" data-type="pending">
+          <div class="pub-type-dot dot-pending"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-pending">In Preparation</p>
+            <p class="pub-title pending">BEST Programme — publication in preparation</p>
+            <p class="pub-authors">Sim, T. Y. et al.</p>
+            <p class="pub-venue" style="font-style:italic;">Expected 2026. This page will be updated when published.</p>
+          </div>
+        </div>
+
+        <div class="pub-entry" data-type="pending">
+          <div class="pub-type-dot dot-pending"></div>
+          <div class="pub-body">
+            <p class="pub-type-label label-pending">In Preparation</p>
+            <p class="pub-title pending">MicroCode Activities (micro:bit) — publication in preparation</p>
+            <p class="pub-authors">Sim, T. Y. et al.</p>
+            <p class="pub-venue" style="font-style:italic;">Expected 2026–2027. This page will be updated when published.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /#pub-container -->
+
+    <hr>
+
+    <div class="cta-band">
+      <div>
+        <h3>Looking for the full citation record?</h3>
+        <p>Google Scholar has the most up-to-date list with citation counts and h-index.</p>
+      </div>
+      <div class="btn-row">
+        <a href="contact.html" class="btn">Get in touch</a>
+        <a href="https://scholar.google.com/citations?user=vHaWs4kAAAAJ&hl=en" target="_blank" class="btn btn-primary">Google Scholar →</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-name">Assoc. Prof. Ts. Dr.–Ing. Sim, Tze Ying</p>
+      <p class="footer-affil">School of Computing and Artificial Intelligence, Sunway University</p>
+      <a href="mailto:tzeyings@sunway.edu.my" class="footer-email">tzeyings@sunway.edu.my</a>
+    </div>
+    <div class="footer-links">
+      <a href="https://scholar.google.com/citations?user=vHaWs4kAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      <a href="publications.html">Publications</a>
+      <a href="contact.html">Get in touch</a>
+    </div>
+  </div>
+  <p class="footer-copy">© 2026 Sim, Tze Ying. Sunway University, Malaysia.</p>
+</footer>
+
+<script>
+  function filterPubs(type, btn) {
+    document.querySelectorAll('.pub-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const entries = document.querySelectorAll('.pub-entry');
+    const yearHeads = document.querySelectorAll('.pub-year-head');
+
+    entries.forEach(entry => {
+      entry.style.display = (type === 'all' || entry.dataset.type === type) ? '' : 'none';
+    });
+
+    // Hide year headings with no visible entries
+    yearHeads.forEach(head => {
+      const nextList = head.nextElementSibling;
+      if (!nextList) return;
+      const visible = Array.from(nextList.querySelectorAll('.pub-entry')).some(e => e.style.display !== 'none');
+      head.style.display = visible ? '' : 'none';
+      nextList.style.display = visible ? '' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>

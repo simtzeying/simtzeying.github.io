@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teaching — Dr. Tze Ying Sim</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Teaching-page specific styles */
+
+    /* Philosophy */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .philosophy-card {
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      background: var(--bg-white);
+    }
+    .philosophy-icon {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .philosophy-card h3 {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+    .philosophy-card p {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Subject table */
+    .subject-group {
+      margin-bottom: 1.5rem;
+    }
+    .subject-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 0.5px solid var(--border-light);
+    }
+    .subject-row {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 0.8fr;
+      gap: 10px;
+      padding: 0.6rem 0;
+      border-bottom: 0.5px solid var(--border-light);
+      align-items: baseline;
+    }
+    .subject-row:last-child { border-bottom: none; }
+    .subject-name {
+      font-size: 13px;
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+    .subject-level {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .subject-years {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      text-align: right;
+    }
+
+    /* Supervision */
+    .supervision-section { margin-bottom: 1.5rem; }
+    .supervision-type-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .supervision-card {
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+      background: var(--bg-white);
+      margin-bottom: 8px;
+    }
+    .supervision-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 4px;
+    }
+    .supervision-card h4 {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .supervision-status {
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    .supervision-card .meta {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-bottom: 4px;
+    }
+    .supervision-card .thesis {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .supervision-card .role-tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--bg-surface);
+      border: 0.5px solid var(--border-light);
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    /* Awards */
+    .award-list { display: flex; flex-direction: column; gap: 8px; }
+    .award-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 0.65rem 0.85rem;
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      background: var(--bg-white);
+    }
+    .award-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--amber-mid);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .award-title { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+    .award-body { font-size: 12px; color: var(--text-secondary); }
+
+    @media (max-width: 680px) {
+      .philosophy-grid { grid-template-columns: 1fr; }
+      .subject-row { grid-template-columns: 1fr; gap: 2px; }
+      .subject-years { text-align: left; }
+      .supervision-card-header { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Assoc. Prof. Ts. Dr.–Ing. Sim, Tze Ying <span>| Sunway University</span></div>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research &amp; Projects</a></li>
+      <li><a href="teaching.html" class="active">Teaching</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="container">
+
+    <p class="breadcrumb"><a href="index.html">Home</a> › <span>Teaching</span></p>
+
+    <div class="accent-bar teal"></div>
+    <h1 class="page-title">Teaching</h1>
+    <p class="page-mission">Twenty-plus years of teaching computing at university level — from introductory programming to advanced software engineering. I believe the best teaching happens when students are challenged to think, not just to follow instructions.</p>
+
+    <hr>
+
+    <!-- Teaching Philosophy -->
+    <p class="section-label">Teaching philosophy</p>
+
+    <p class="body-text">My U-curve observation — that first-year programming students' marks split sharply along lines of prior access rather than ability — is not just a research finding. It is a challenge I try to address in every class I teach. The students who arrive without computing backgrounds are not less capable. They need a different starting point, more scaffolding in the early stages, and explicit instruction in the thinking skills that more experienced students have already absorbed.</p>
+
+    <p class="body-text">I design my courses to be active and participatory. Programming cannot be learned by watching — it requires doing, making mistakes, debugging, and trying again. I integrate problem-based activities, peer collaboration, and low-stakes formative assessment so that students can build confidence alongside competence. I am particularly attentive to helping first-generation computing students find their footing.</p>
+
+    <div class="pull-quote">
+      <p>"A good teacher does not just transfer knowledge. A good teacher changes what a student believes they are capable of."</p>
+    </div>
+
+    <div class="philosophy-grid">
+      <div class="philosophy-card">
+        <div class="philosophy-icon">⬡</div>
+        <h3>Learning by doing</h3>
+        <p>Programming is a craft. I build in-class activities, labs, and projects that require students to construct solutions — not just recognise them. Struggle is part of the process.</p>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-icon">⬡</div>
+        <h3>Thinking before coding</h3>
+        <p>Computational thinking comes before syntax. I spend time explicitly teaching decomposition, abstraction, and algorithmic reasoning — especially for students without prior computing exposure.</p>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-icon">⬡</div>
+        <h3>Assessment for learning</h3>
+        <p>My assessments are designed to reveal understanding, not just recall. I use iterative assignments and reflective tasks that reward the ability to explain, adapt, and improve.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Subjects Taught -->
+    <p class="section-label">Subjects taught</p>
+
+    <div class="subject-group">
+      <p class="subject-group-title">Computing &amp; Programming · Sunway University</p>
+      <div class="subject-row">
+        <span class="subject-name">Introduction to Programming</span>
+        <span class="subject-level">Undergraduate · Year 1</span>
+        <span class="subject-years">Ongoing</span>
+      </div>
+      <div class="subject-row">
+        <span class="subject-name">Object-Oriented Programming</span>
+        <span class="subject-level">Undergraduate · Year 1–2</span>
+        <span class="subject-years">Ongoing</span>
+      </div>
+      <div class="subject-row">
+        <span class="subject-name">Data Structures and Algorithms</span>
+        <span class="subject-level">Undergraduate · Year 2</span>
+        <span class="subject-years">Ongoing</span>
+      </div>
+      <div class="subject-row">
+        <span class="subject-name">System Analysis and Design</span>
+        <span class="subject-level">Undergraduate · Year 1</span>
+        <span class="subject-years">Ongoing</span>
+      </div>
+    </div>
+
+    <div class="subject-group">
+      <p class="subject-group-title">Engineering · University of Kassel, Germany</p>
+      <div class="subject-row">
+        <span class="subject-name">Software Engineering</span>
+        <span class="subject-level">Undergraduate · Year 3</span>
+        <span class="subject-years">2006–2013</span>
+      </div>
+      <div class="subject-row">
+        <span class="subject-name">Embedded Systems</span>
+        <span class="subject-level">Undergraduate · Year 1</span>
+        <span class="subject-years">2006–2013</span>
+      </div>
+      <div class="subject-row">
+        <span class="subject-name">Digital Circuits</span>
+        <span class="subject-level">Undergraduate · Year 1</span>
+        <span class="subject-years">2006–2013</span>
+      </div>
+    </div>
+
+    <div class="subject-group">
+      <p class="subject-group-title">Postgraduate · Upcoming</p>
+      <div class="subject-row">
+        <span class="subject-name">Advanced Software Engineering</span>
+        <span class="subject-level">Postgraduate</span>
+        <span class="subject-years">Scheduled</span>
+      </div>
+    </div>
+
+    <p style="font-size:12px; color:var(--text-tertiary); font-style:italic; margin-top:-0.5rem; margin-bottom:1rem;">Subject list reflects areas of teaching expertise and may not be exhaustive.</p>
+
+    <hr>
+
+    <!-- Student Supervision -->
+    <p class="section-label">Student supervision</p>
+
+    <div class="supervision-section">
+      <p class="supervision-type-label">Doctoral (PhD)</p>
+
+      <div class="supervision-card">
+        <div class="supervision-card-header">
+          <h4>Li Yuan</h4>
+          <span class="badge badge-inprog supervision-status">In progress</span>
+        </div>
+        <p class="meta">Doctor of Philosophy · Sunway University · 2026 – 2029</p>
+        <p class="thesis">Optimizing Scaffolded AI in Programming Education: A Comparative Study on Multi-Agent Architectures, Dynamic Adaptivity Systems, and Representation Forms</p>
+        <span class="role-tag">Principal Supervisor</span>
+      </div>
+
+      <div class="supervision-card">
+        <div class="supervision-card-header">
+          <h4>Humayun K. Biswa</h4>
+          <span class="badge badge-done supervision-status">Completed</span>
+        </div>
+        <p class="meta">Doctor of Philosophy · Sunway University · 2021 – 2025</p>
+        <p class="thesis">BIM Adoption Framework for Existing Buildings in the AEC Industry</p>
+        <span class="role-tag">Co-Supervisor</span>
+      </div>
+    </div>
+
+    <div class="supervision-section">
+      <p class="supervision-type-label">Master's by Research</p>
+
+      <div class="supervision-card">
+        <div class="supervision-card-header">
+          <h4>Izzah Sakinah Ahmad</h4>
+          <span class="badge badge-done supervision-status">Completed</span>
+        </div>
+        <p class="meta">Master of Computer Science by Research · Sunway University · 2022 – 2025</p>
+        <p class="thesis">Development of A Framework for Implementing Unplugged Computational Thinking Activities</p>
+        <span class="role-tag">Principal Supervisor</span>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Teaching Awards -->
+    <p class="section-label">Professional qualifications</p>
+    <div class="award-list">
+      <div class="award-item">
+        <div class="award-dot"></div>
+        <div>
+          <p class="award-title">Technologist (Ts.) Professional Accreditation</p>
+          <p class="award-body">Malaysia Board of Technologists (MBOT) · Professional recognition of teaching and applied technology practice in computing and engineering education</p>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-dot"></div>
+        <div>
+          <p class="award-title">Post Graduate Certificate in Higher Education</p>
+          <p class="award-body">Lancaster University, United Kingdom · 2018 · Formal pedagogical training in higher education teaching and learning</p>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-dot"></div>
+        <div>
+          <p class="award-title">Introduction to the Use of AI in Higher Education (FD107)</p>
+          <p class="award-body">Arizona State University · 2024 · Continuing professional development in AI-enhanced pedagogy</p>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- CTA -->
+    <div class="cta-band">
+      <div>
+        <h3>Interested in research supervision or teaching collaboration?</h3>
+        <p>I welcome enquiries from prospective postgraduate students and collaborators in computing education research.</p>
+      </div>
+      <div class="btn-row">
+        <a href="research.html" class="btn">My research →</a>
+        <a href="contact.html" class="btn btn-primary">Get in touch →</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-name">Assoc. Prof. Ts. Dr.–Ing. Sim, Tze Ying</p>
+      <p class="footer-affil">School of Computing and Artificial Intelligence, Sunway University</p>
+      <a href="mailto:tzeyings@sunway.edu.my" class="footer-email">tzeyings@sunway.edu.my</a>
+    </div>
+    <div class="footer-links">
+      <a href="https://scholar.google.com/citations?user=vHaWs4kAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      <a href="publications.html">Publications</a>
+      <a href="contact.html">Get in touch</a>
+    </div>
+  </div>
+  <p class="footer-copy">© 2026 Sim, Tze Ying. Sunway University, Malaysia.</p>
+</footer>
+
+</body>
+</html>
