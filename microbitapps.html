@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>micro:bit Apps – Sunway | STEM Learning Platform</title>
+  <meta name="description" content="A collaborative STEM teaching platform using micro:bit apps, developed by Lancaster University and Sunway University with Cytron Sdn. Bhd." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  
+<!-- ─── VISITOR ANALYTICS (GoatCounter – private dashboard only) ── -->
+<!-- Sign up at https://www.goatcounter.com → replace YOUR_CODE below with your site code -->
+<script data-goatcounter="https://simtzeying.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+  
+  <style>
+    :root {
+      --primary:     #e63946;
+      --primary-dk:  #c1121f;
+      --accent:      #f4a261;
+      --navy:        #1d3557;
+      --navy-lt:     #457b9d;
+      --bg:          #f8f9fa;
+      --white:       #ffffff;
+      --text:        #212529;
+      --text-muted:  #6c757d;
+      --border:      #dee2e6;
+      --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --radius:      12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo {
+      width: 36px; height: 36px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: -0.5px;
+    }
+    .nav-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.05rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a5298 60%, var(--navy-lt) 100%);
+      color: #fff;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1.1rem;
+      opacity: .85;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .btn-primary:hover { background: var(--primary-dk); border-color: var(--primary-dk); }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      margin-top: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .hero-stat-label { font-size: 0.8rem; opacity: .7; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* ─── SECTION WRAPPER ─────────────────────────────────── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--text-muted);
+      max-width: 620px;
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────────── */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.75; }
+    .about-text p strong { color: var(--text); }
+    .partner-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .partner-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .partner-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .partner-icon.lu  { background: #e8f0fe; }
+    .partner-icon.sun { background: #fff3e0; }
+    .partner-icon.cyt { background: #e8f5e9; }
+    .partner-name { font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+    .partner-role { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* ─── EXPERIMENTS ─────────────────────────────────────── */
+    #experiments { background: var(--bg); }
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .exp-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .exp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    .exp-card-header {
+      padding: 1.4rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .exp-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .exp-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 3px;
+    }
+    .exp-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+    .exp-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .exp-card-body { padding: 1rem 1.5rem 1.4rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+    .tag {
+      font-size: 0.73rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 50px;
+      background: #e8f0fe;
+      color: #3c4fa0;
+    }
+    .exp-card-footer {
+      padding: .8rem 1.5rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--navy-lt);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* colour themes per experiment */
+    .theme-1 .exp-icon { background: #fde8e8; }
+    .theme-1 .exp-num  { color: var(--primary); }
+    .theme-2 .exp-icon { background: #e8f5e9; }
+    .theme-2 .exp-num  { color: #2e7d32; }
+    .theme-3 .exp-icon { background: #fff3e0; }
+    .theme-3 .exp-num  { color: #e65100; }
+    .theme-4 .exp-icon { background: #e0f7fa; }
+    .theme-4 .exp-num  { color: #00838f; }
+    .theme-5 .exp-icon { background: #f3e5f5; }
+    .theme-5 .exp-num  { color: #7b1fa2; }
+    .theme-6 .exp-icon { background: #e8eaf6; }
+    .theme-6 .exp-num  { color: #3949ab; }
+    .theme-7 .exp-icon { background: #fce4ec; }
+    .theme-7 .exp-num  { color: #c2185b; }
+    .theme-8 .exp-icon { background: #e0f2f1; }
+    .theme-8 .exp-num  { color: #00695c; }
+    .theme-9 .exp-icon { background: #fff8e1; }
+    .theme-9 .exp-num  { color: #f57f17; }
+
+    /* ─── MODAL ───────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 999;
+      padding: 1.5rem;
+      overflow-y: auto;
+    }
+    .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+    .modal {
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 780px;
+      margin: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      overflow: hidden;
+      position: relative;
+    }
+    .modal-header {
+      padding: 2rem 2rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .modal-close {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: background .2s;
+    }
+    .modal-close:hover { background: var(--border); }
+    .modal-body { padding: 1.5rem 2rem 2rem; }
+    .modal-section { margin-bottom: 1.8rem; }
+    .modal-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: .6rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .modal-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .modal-section p, .modal-section li {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .modal-section ul, .modal-section ol {
+      padding-left: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .modal-section ol li::marker { font-weight: 600; color: var(--navy); }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem;
+    }
+    .info-cell {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: .75rem 1rem;
+    }
+    .info-cell-label { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
+    .info-cell-value { font-size: 0.9rem; color: var(--text); font-weight: 500; margin-top: 2px; }
+    .q-list li {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: .6rem .9rem;
+      list-style: none;
+      padding-left: .9rem;
+      border-left: 3px solid var(--accent);
+    }
+    .q-list { padding-left: 0 !important; }
+
+    /* ─── HOW IT WORKS ────────────────────────────────────── */
+    #how { background: var(--white); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      counter-reset: step;
+    }
+    .step {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .step-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .step-title { font-weight: 700; color: var(--navy); margin-bottom: .4rem; font-size: .95rem; }
+    .step-text  { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+    .footer-partner {
+      font-size: .82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.5);
+    }
+    footer p { font-size: .82rem; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .info-grid  { grid-template-columns: 1fr; }
+      .modal-body { padding: 1rem 1.2rem 1.5rem; }
+      .modal-header { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── DEV BANNER ──────────────────────────────────────────── -->
+<div style="background:#fff3cd;border-bottom:2px solid #ffc107;padding:10px 1.5rem;display:flex;align-items:center;gap:10px;font-size:0.875rem;color:#664d03;justify-content:center;text-align:center;">
+  <span style="font-size:1.1rem;">🚧</span>
+  <span><strong>Curriculum Under Development:</strong> The lesson plans, learning objectives, and experiment guides on this page are currently being developed and reviewed. Content is subject to change. Teachers are advised to verify alignment with the latest KSSM syllabus before use.</span>
+</div>
+
+<!-- ─── NAV ─────────────────────────────────────────────────── -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">μbit</div>
+    <span class="nav-title">micro:bit Apps – Sunway</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experiments">Experiments</a></li>
+    <li><a href="#how">How to Use</a></li>
+    <li><a href="https://microbit-apps.org/" target="_blank" rel="noopener">Official Site ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-badge">Lancaster University × Sunway University</div>
+  <h1>STEM Learning with<br/><span>micro:bit Apps</span></h1>
+  <p>Low-cost, hands-on technology bringing Physics, Biology, and Science to life in Malaysian classrooms — from Form 1 to Form 5.</p>
+  <div class="hero-buttons">
+    <a href="#experiments" class="btn btn-primary">
+      ⚗️ Explore Experiments
+    </a>
+    <a href="https://microbit-apps.org/" target="_blank" rel="noopener" class="btn btn-outline">
+      Visit Official micro:bit Apps Site ↗
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">9</div>
+      <div class="hero-stat-label">Experiments</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">5</div>
+      <div class="hero-stat-label">Form Levels</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Partners</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">Subjects</div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── ABOUT ─────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About the Project</div>
+        <h2 class="section-title">Empowering STEM Education with Accessible Technology</h2>
+        <p>
+          The <strong>micro:bit Apps – Sunway</strong> initiative began as a collaboration between
+          <strong>Lancaster University</strong> (UK) and <strong>Sunway University</strong> (Malaysia),
+          united by a shared vision: to make high-quality STEM teaching and learning accessible to
+          schools with limited resources.
+        </p>
+        <p>
+          The project leverages the BBC micro:bit — an affordable, pocket-sized programmable computer —
+          as the centrepiece of real science experiments. Students use it not just to code, but as a
+          <strong>scientific instrument</strong>: a magnetometer, accelerometer, sound sensor,
+          thermometer, and ammeter — all in one device.
+        </p>
+        <p>
+          Hardware development and support is provided by <strong>Cytron Sdn. Bhd.</strong>, a leading
+          Malaysian electronics company, ensuring the hardware platform is locally relevant,
+          cost-effective, and teacher-friendly.
+        </p>
+        <p>
+          Each experiment is carefully mapped to the <strong>Malaysian secondary school curriculum</strong>
+          (KSSM), spanning Form 1–5 across Science, Physics, and Biology — giving teachers a
+          plug-and-play resource that aligns directly with what students need to learn.
+        </p>
+        <a href="https://microbit-apps.org/" class="btn btn-primary" target="_blank" rel="noopener" style="margin-top:.5rem;">
+          🔗 Official micro:bit Apps Website
+        </a>
+      </div>
+      <div>
+        <div class="partner-cards">
+          <div class="partner-card">
+            <div class="partner-icon lu">🎓</div>
+            <div>
+              <div class="partner-name">Lancaster University</div>
+              <div class="partner-role">Academic Research & Curriculum Design · Lancaster, United Kingdom</div>
+            </div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-icon sun">🏫</div>
+            <div>
+              <div class="partner-name">Sunway University</div>
+              <div class="partner-role">Academic Partner & Local Implementation · Petaling Jaya, Malaysia</div>
+            </div>
+          </div>
+          <div class="partner-card">
+            <div class="partner-icon cyt">🔌</div>
+            <div>
+              <div class="partner-name">Cytron Sdn. Bhd.</div>
+              <div class="partner-role">Industry Partner · Hardware Development & Support · Malaysia</div>
+            </div>
+          </div>
+          <div class="partner-card" style="background:#fff5f5; border-color:#ffc8c8;">
+            <div class="partner-icon" style="background:#fde8e8; font-size:1.1rem;">🎯</div>
+            <div>
+              <div class="partner-name">Common Vision</div>
+              <div class="partner-role">Provide low-resourced technology to improve STEM teaching and learning outcomes for all Malaysian students.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EXPERIMENTS ────────────────────────────────────────────── -->
+<section id="experiments">
+  <div class="container">
+    <div class="section-label">Classroom Experiments</div>
+    <h2 class="section-title">micro:bit Experiment Library</h2>
+    <p class="section-sub">Click any experiment card to view the full lesson plan — including learning objectives, step-by-step guide, and student reflection questions.</p>
+
+    <div class="exp-grid" id="expGrid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ───────────────────────────────────────────── -->
+<section id="how">
+  <div class="container">
+    <div class="section-label">For Teachers</div>
+    <h2 class="section-title">How to Use This Platform</h2>
+    <p class="section-sub">Get your class running micro:bit experiments in four simple steps.</p>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Get a micro:bit</div>
+        <div class="step-text">Each student or group needs a BBC micro:bit v2. These are available from Cytron Sdn. Bhd. at an affordable price for Malaysian schools.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Choose an Experiment</div>
+        <div class="step-text">Browse the experiment library above and select one that matches your form and chapter. Each card shows the curriculum alignment at a glance.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Load the App</div>
+        <div class="step-text">Visit <a href="https://microbit-apps.org/" target="_blank" rel="noopener">microbit-apps.org</a> on any computer, select the corresponding app, and flash it to the micro:bit via USB — no coding required.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Run & Reflect</div>
+        <div class="step-text">Follow the step-by-step guide in each experiment card. Use the reflection questions to spark discussion and deepen student understanding.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-logos">
+    <span class="footer-partner">Lancaster University</span>
+    <span style="color:rgba(255,255,255,.2)">×</span>
+    <span class="footer-partner">Sunway University</span>
+    <span style="color:rgba(255,255,255,.2)">×</span>
+    <span class="footer-partner">Cytron Sdn. Bhd.</span>
+  </div>
+  <p>
+    © 2025 micro:bit Apps – Sunway &nbsp;|&nbsp;
+    Official site: <a href="https://microbit-apps.org/" target="_blank" rel="noopener">microbit-apps.org</a> &nbsp;|&nbsp;
+    GitHub: <a href="https://github.com/simtzeying/microbitapps" target="_blank" rel="noopener">simtzeying/microbitapps</a>
+  </p>
+</footer>
+
+<!-- ─── MODAL ──────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header" id="modalHeader">
+      <div></div>
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ─── DATA & LOGIC ───────────────────────────────────────────── -->
+<script>
+const experiments = [
+  {
+    id: 1,
+    theme: "theme-1",
+    icon: "🧲",
+    title: "Electro-magnets",
+    shortDesc: "Use the onboard magnetometer to measure force; investigate voltage, turns, and distance.",
+    subject: "Physics / Science",
+    forms: ["Physics Form 5 – Ch 4", "Science Form 2 – Ch 7", "Science Form 3 – Ch 6"],
+    chapters: ["Chapter 4: Electromagnetism (Form 5)", "Chapter 7: Electrical and Magnetism (Form 2)", "Chapter 6: Electrical and Magnetism (Form 3)"],
+    tags: ["Physics", "Form 5", "Form 3", "Form 2", "Electromagnetism"],
+    objectives: [
+      "Understand how an electromagnet works and how it differs from a permanent magnet.",
+      "Investigate the relationship between voltage, number of wire turns, and magnetic force.",
+      "Use the micro:bit magnetometer as a scientific measuring instrument.",
+      "Collect, record, and analyse experimental data to identify patterns."
+    ],
+    steps: [
+      "Set up the micro:bit with the Electro-magnets app from microbit-apps.org and connect it via USB.",
+      "Wind 10 turns of insulated copper wire tightly around an iron nail to form an electromagnet.",
+      "Connect the wire ends to a battery holder (start with 1 × 1.5 V cell) via a switch.",
+      "Place the micro:bit magnetometer sensor 1 cm from the nail head. Switch on the circuit and record the magnetometer reading on the micro:bit display.",
+      "Increase the voltage by adding a second cell (3 V total). Record the new reading.",
+      "Return to 1 cell. Increase the number of turns to 20, then 30, recording readings each time.",
+      "Using 20 turns and 3 V, move the magnetometer to 2 cm and then 5 cm from the nail. Record each reading.",
+      "Organise all results in a data table with columns: Voltage (V), Number of Turns, Distance (cm), Magnetometer Reading.",
+      "Plot line graphs: Magnetic Force vs Voltage; Magnetic Force vs Turns; Magnetic Force vs Distance."
+    ],
+    conclusion: "The strength of an electromagnet increases with higher voltage and more wire turns. The magnetic force decreases as the distance from the electromagnet increases. Unlike permanent magnets, the strength of an electromagnet can be controlled by adjusting voltage, number of turns, or the material of the core — making it highly useful in real-world applications such as electric motors, relays, and MRI machines.",
+    questions: [
+      "What happened to the magnetometer reading when you doubled the number of wire turns? Explain why.",
+      "How does increasing the voltage affect the strength of the electromagnet?",
+      "Using your distance data, describe the pattern between distance and magnetic force. Is it linear or non-linear?",
+      "How would replacing the iron nail with a wooden stick affect the results? Why?",
+      "Name three everyday devices that use electromagnets. How does each one work?",
+      "What safety precautions should be taken when building an electromagnet?"
+    ]
+  },
+  {
+    id: 2,
+    theme: "theme-2",
+    icon: "📦",
+    title: "Micro-drop",
+    shortDesc: "Build a protective container and measure impact force using the micro:bit accelerometer.",
+    subject: "Physics",
+    forms: ["Physics Form 4 – Ch 2"],
+    chapters: ["Chapter 2: Impulsive Force / Daya dan Gerakan I"],
+    tags: ["Physics", "Form 4", "Impulsive Force", "Design Challenge"],
+    objectives: [
+      "Understand the concept of impulsive force and its relationship to impulse (F = Δmv / Δt).",
+      "Design and evaluate protective structures that reduce impact force through extending collision time.",
+      "Use the micro:bit accelerometer to measure peak g-force on impact.",
+      "Apply the engineering design cycle: design → build → test → improve."
+    ],
+    steps: [
+      "Open the Micro-drop app on your micro:bit (available at microbit-apps.org). The display will show maximum g-force recorded.",
+      "Gather available padding materials: cotton wool, bubble wrap, foam, cardboard, rubber bands.",
+      "Design a protective container (e.g., using a small cardboard box or plastic cup) that houses the micro:bit safely.",
+      "Place the micro:bit inside your container. Press button A to reset the maximum reading to zero.",
+      "Hold the container at exactly 1 metre height and release (do not throw). Note the maximum g-force reading on the display.",
+      "Modify your container design — add more padding, change material arrangement, or adjust outer shape. Reset and drop again.",
+      "Repeat at least 5 different designs, recording: Design Description, Materials Used, Max G-force (g).",
+      "Increase the drop height to 1.5 m and 2 m with your best design and record results.",
+      "Compare results across groups and identify which design principles minimise impact force."
+    ],
+    conclusion: "Materials that increase the time over which the collision occurs (Δt) reduce the impulsive force (F), since F = Δmv / Δt and momentum change (Δmv) is constant for the same drop height. Soft, compressible materials such as foam and bubble wrap are most effective because they deform on impact, extending the stopping time. This principle is applied in car crumple zones, sports helmets, and packaging for fragile goods.",
+    questions: [
+      "Which design produced the lowest g-force reading? What features made it effective?",
+      "Using the formula F = Δmv / Δt, explain why a longer stopping time reduces peak force.",
+      "How does increasing the drop height affect the impact force? Why?",
+      "Where do engineers apply this principle in everyday product design?",
+      "If you doubled the mass of the micro:bit inside the container (keeping the drop height constant), predict the effect on impact force. Justify your answer.",
+      "How is this experiment related to the design of road safety barriers?"
+    ]
+  },
+  {
+    id: 3,
+    theme: "theme-3",
+    icon: "🔇",
+    title: "Noise Insulation",
+    shortDesc: "Investigate how well different materials insulate against noise using the micro:bit microphone.",
+    subject: "Science",
+    forms: ["Science Form 2 – Sound"],
+    chapters: ["Chapter: Sound (Form 2 Science)"],
+    tags: ["Science", "Form 2", "Sound", "Materials Science"],
+    objectives: [
+      "Understand that sound is a form of energy that travels as waves through materials.",
+      "Investigate and compare the sound insulation properties of different materials.",
+      "Use the micro:bit microphone to measure sound intensity.",
+      "Identify properties that make materials good or poor sound insulators."
+    ],
+    steps: [
+      "Load the Noise Insulation app onto your micro:bit from microbit-apps.org. The display shows real-time sound level (0–255 scale).",
+      "Set up a small Bluetooth speaker or buzzer producing a consistent tone at a fixed volume in the centre of your workspace.",
+      "Place the micro:bit 10 cm from the sound source with no insulation. Record the baseline reading (3 measurements, take the average).",
+      "Wrap the sound source completely in Material A (e.g., one layer of cotton wool, 2 cm thick). Measure sound level at the same 10 cm distance. Record.",
+      "Remove Material A. Repeat step 4 with Material B (foam rubber), Material C (cardboard), Material D (bubble wrap), and Material E (aluminium foil).",
+      "For each material, test one layer, then two layers, and record both readings.",
+      "Calculate the noise reduction: Baseline Reading − Insulated Reading for each material and layer count.",
+      "Present results in a table and plot a bar chart comparing noise reduction across materials."
+    ],
+    conclusion: "Soft, porous materials (cotton wool, foam) absorb sound energy more effectively than hard, rigid materials (cardboard, aluminium foil). This is because porous materials cause sound waves to lose energy through friction as they pass through tiny air pockets. Adding more layers of insulation generally increases sound reduction. These principles are used in recording studios, concert halls, and the construction of buildings near busy roads.",
+    questions: [
+      "Which material reduced sound the most? Why do you think it outperformed the others?",
+      "What physical properties make a material a good sound insulator?",
+      "Did adding a second layer always double the noise reduction? What does your data show?",
+      "Why are walls in recording studios typically covered with foam panels rather than smooth plaster?",
+      "How is noise pollution harmful to human health? What can communities do to reduce it?",
+      "Design an ideal noise-insulating panel for a school classroom next to a busy road. What materials would you choose and why?"
+    ]
+  },
+  {
+    id: 4,
+    theme: "theme-4",
+    icon: "🌱",
+    title: "Biology Experiment",
+    shortDesc: "Investigate how water amount and frequency affect plant growth; track results with micro:bit.",
+    subject: "Biology / Science",
+    forms: ["Biology Form 5 – Transport in Plants", "Science Form 1 – Scientific Method"],
+    chapters: ["Chapter: Transport in Plants (Biology Form 5)", "Chapter 1: Scientific Method (Science Form 1)"],
+    tags: ["Biology", "Form 5", "Form 1", "Plant Growth", "Scientific Method"],
+    objectives: [
+      "Investigate the effect of water volume and watering frequency on plant growth.",
+      "Practice the scientific method: formulate hypothesis, identify variables, collect data, draw conclusions.",
+      "Relate findings to the transport of water through xylem vessels in plants (Biology Form 5).",
+      "Use micro:bit to log and monitor experimental conditions over time."
+    ],
+    steps: [
+      "Prepare 4 identical plant pots, each with the same soil type and the same type of seedling (e.g., mung bean / kacang hijau).",
+      "Label the pots: A = Low Water + Daily, B = High Water + Daily, C = Low Water + Every 3 Days, D = High Water + Every 3 Days.",
+      "Low water = 50 ml per watering; High water = 150 ml per watering.",
+      "Set up the micro:bit with a simple watering log app (or use it as a stopwatch timer). Each time a pot is watered, press button A to log the event with the date.",
+      "Place all pots in the same location (same sunlight, temperature). Water each pot according to its schedule.",
+      "Every 3 days, measure and record: plant height (cm), number of leaves, colour of leaves (pale/yellow/dark green), and overall health score (1–5).",
+      "Continue for 3–4 weeks. Download or transcribe the micro:bit watering log alongside your plant measurements.",
+      "Plot growth curves (height vs. days) for all 4 pots on the same graph.",
+      "Identify which treatment produced the healthiest growth and explain why."
+    ],
+    conclusion: "Plants require an optimal amount of water — too little causes wilting and stunted growth (insufficient water for photosynthesis and cell turgidity), while too much leads to waterlogged soil, oxygen deprivation at the roots, and root rot. The frequency of watering interacts with volume: frequent small amounts can maintain steadier moisture than infrequent large doses. Water is transported from roots to leaves through xylem vessels by transpiration pull. The ideal treatment balances water availability with aeration of the root system.",
+    questions: [
+      "Which watering treatment (A, B, C, or D) produced the healthiest plants? Explain why using the concept of osmosis and xylem transport.",
+      "What is transpiration, and how does it drive water movement from roots to leaves?",
+      "What visible signs indicated that a plant was overwatered? Underwatered?",
+      "How might a farmer use technology similar to the micro:bit to automate irrigation? What are the benefits?",
+      "How does this experiment demonstrate the importance of controlling variables in a scientific investigation?",
+      "How could climate change affect water availability for plants in Malaysia? What adaptations might plants develop?"
+    ]
+  },
+  {
+    id: 5,
+    theme: "theme-5",
+    icon: "⚡",
+    title: "Making an Ammeter",
+    shortDesc: "Convert the micro:bit voltmeter into an ammeter; explore voltage, current, and resistance.",
+    subject: "Physics / Science",
+    forms: [
+      "Physics Form 5 – Ch 3.1 (Ohm's Law)",
+      "Science Form 3 – Ch 6",
+      "Science Form 2 – Ch 7",
+      "Science Form 1 – Ch 1"
+    ],
+    chapters: [
+      "Chapter 3.1: Electricity – Ohm's Law (Physics Form 5)",
+      "Chapter 6: Electrical and Magnetism (Science Form 3)",
+      "Chapter 7: Pengukuran Kuantiti Elektrik / Ammeter (Science Form 2)",
+      "Chapter 1: Ammeter (Science Form 1)"
+    ],
+    tags: ["Physics", "Form 5", "Form 3", "Form 2", "Form 1", "Ohm's Law", "Electricity"],
+    objectives: [
+      "Understand the difference between an ammeter and a voltmeter and their circuit connections.",
+      "Apply Ohm's Law (V = IR) to convert voltage readings into current values.",
+      "Verify Ohm's Law by investigating the relationship between voltage and current.",
+      "Construct a simple circuit using the micro:bit as a measuring instrument."
+    ],
+    steps: [
+      "Load the Ammeter app onto your micro:bit from microbit-apps.org. The app reads the analogue pin voltage and displays the calculated current.",
+      "Insert a known resistor (10 Ω) in series in a simple circuit: battery → switch → resistor → back to battery. Connect the micro:bit analogue pin across the resistor.",
+      "Switch on the circuit. The micro:bit measures the voltage across the 10 Ω resistor and calculates current using I = V / R. Record the displayed current in mA.",
+      "Measure the voltage using a standard voltmeter (or the micro:bit voltage display) and verify: calculated I = V / R matches the displayed value.",
+      "Replace the 10 Ω resistor with a 22 Ω resistor (keeping voltage constant). Record new current reading.",
+      "Repeat with 47 Ω and 100 Ω resistors. Record Resistance (Ω), Voltage (V), and Current (mA) for each.",
+      "Connect resistors in series (e.g., 10 Ω + 22 Ω = 32 Ω total) and repeat measurements.",
+      "Plot a V–I graph. The gradient of the line equals resistance (R = V / I = gradient). Compare this to your known resistor values.",
+      "Discuss: What would happen if you connected an ammeter in parallel? Why would this be dangerous?"
+    ],
+    conclusion: "The micro:bit successfully functions as an ammeter by measuring the voltage across a known resistance and applying Ohm's Law (I = V / R). The V–I graph produced a straight line through the origin, confirming that current is directly proportional to voltage at constant resistance — the statement of Ohm's Law. The gradient of this line equals 1/R (conductance). This experiment demonstrates that inexpensive microcontrollers can replace expensive laboratory instruments, making electricity experiments more accessible.",
+    questions: [
+      "Why must an ammeter be connected in series rather than in parallel in a circuit?",
+      "What would happen to the current if you doubled the resistance while keeping the voltage constant?",
+      "Explain using Ohm's Law why an ideal ammeter must have very low (ideally zero) internal resistance.",
+      "How does your V–I graph confirm Ohm's Law? What does the gradient of the line represent?",
+      "If the micro:bit shows a current of 150 mA across a 10 Ω resistor, what is the voltage? Show your working.",
+      "Name three electrical devices you use daily that rely on Ohm's Law in their circuit design."
+    ]
+  },
+  {
+    id: 6,
+    theme: "theme-6",
+    icon: "🌡️",
+    title: "Temperature Data Logger",
+    shortDesc: "Collect and analyse temperature data over time using the micro:bit built-in temperature sensor.",
+    subject: "Science / Physics",
+    forms: ["Science Form 1–5 (cross-curricular potential)", "Physics Form 4 – Thermodynamics"],
+    chapters: ["Thermal Energy (Physics)", "Scientific Method (Science Form 1)", "Ecology & Environment (Biology)"],
+    tags: ["Science", "Cross-curricular", "Form 1–5", "Temperature", "Data Logger"],
+    objectives: [
+      "Use the micro:bit as an electronic temperature data logger to collect real-time measurements.",
+      "Identify patterns and trends in temperature change over time.",
+      "Apply data collection and graphing skills to real-world environmental investigations.",
+      "Understand factors that influence temperature variation in different environments."
+    ],
+    steps: [
+      "Load the Temperature Logger app onto your micro:bit from microbit-apps.org.",
+      "Decide on your investigation question — e.g., 'How does classroom temperature change throughout the school day?' or 'How does direct sunlight affect the temperature of different coloured surfaces?'",
+      "Set the data logging interval: press button A to cycle through options (every 1 min, 5 min, 10 min). Select your interval.",
+      "Place the micro:bit in your chosen environment (classroom, outside, near a window, inside a box covered in black vs white paper).",
+      "Allow the micro:bit to log temperature data for at least 1 hour (or the full school day for long-term investigations).",
+      "Press button B to review the logged data on the micro:bit display, or connect to a computer and use the micro:bit data editor to download CSV data.",
+      "Enter the data into a spreadsheet or draw a time–temperature graph by hand. Label axes clearly.",
+      "If comparing environments or surfaces, plot both datasets on the same graph using different colours.",
+      "Identify: maximum temperature, minimum temperature, rate of temperature change, and any patterns."
+    ],
+    conclusion: "The micro:bit temperature sensor provides a cost-effective, accurate method to monitor environmental temperature over time. Temperature varies depending on location, time of day, and surface properties — dark surfaces absorb more radiation and reach higher temperatures than light surfaces. The ability to log, download, and graph data demonstrates how digital tools can transform scientific investigation, enabling longer-term and more precise measurements than traditional thermometers. This experiment has cross-curricular potential in Physics (thermal energy, radiation), Biology (ecology, climate), and Chemistry (rate of reaction).",
+    questions: [
+      "Describe the temperature pattern you observed. At what time of day was it hottest/coldest?",
+      "How does this experiment demonstrate the difference between a fair test and an uncontrolled investigation?",
+      "If you placed the micro:bit inside a black box vs a white box in sunlight, predict which would be hotter. Explain using the concept of radiation absorption.",
+      "How could temperature data logging be used by Malaysian farmers to improve crop yield?",
+      "How is global temperature monitoring used by scientists to study climate change?",
+      "Design an improved version of this experiment that could run for one full week. What challenges would you face and how would you overcome them?"
+    ]
+  },
+  {
+  "id": 7,
+  "theme": "theme-7",
+  "icon": "🔌",
+  "title": "Know Your micro:bit",
+  "shortDesc": "Identify sensors and actuators on the micro:bit; understand the role of the microcontroller.",
+  "subject": "Design & Technology",
+  "forms": [
+    "Standard 6 D&T – Ch 2"
+  ],
+  "chapters": [
+    "Chapter 2: Elements in an Electronic System (Standard 6)"
+  ],
+  "tags": [
+    "D&T",
+    "Standard 6",
+    "Sensors",
+    "Actuators",
+    "Embedded Systems"
+  ],
+  "objectives": [
+    "Identify the sensors and actuators on a micro:bit.",
+    "Differentiate between input (sensor) and output (actuator) components.",
+    "Describe the role of the microcontroller in an embedded system."
+  ],
+  "steps": [
+    "Hold your micro:bit and observe both sides. Can you spot the LED grid, buttons, and the edge connector pins?",
+    "Using the diagram provided, label each component as either a <strong>sensor (input)</strong> or <strong>actuator (output)</strong>.",
+    "Open the micro:bit Apps platform and load the <strong>Sensor Explorer</strong> app onto your micro:bit.",
+    "Tilt the board — watch how the LED display reacts to movement. This is the <strong>accelerometer</strong> (sensor) controlling the <strong>LED matrix</strong> (actuator).",
+    "Cover the front of the board with your hand and observe the display change — this is the <strong>light sensor</strong> at work.",
+    "Press Button A and Button B and record what happens on the display.",
+    "Complete the table: list at least <strong>4 sensors</strong> and <strong>3 actuators</strong> found on the micro:bit."
+  ],
+  "conclusion": "The micro:bit is a miniature embedded system. It contains multiple sensors (inputs) — including an accelerometer, light sensor, temperature sensor, compass, and buttons — and actuators (outputs) such as the LED matrix, buzzer, and radio transmitter. The microcontroller (processor) sits at the centre, reading data from sensors and sending commands to actuators based on its program. This is the same architecture found in smartphones, washing machines, and cars.",
+  "questions": [
+    "What is the difference between a sensor and an actuator? Give one example of each from the micro:bit.",
+    "The micro:bit has a built-in thermometer. Is this a sensor or an actuator? Explain your answer.",
+    "Can you think of a real-world device (like a phone or washing machine) that also uses sensors and actuators? Describe how they work together."
+  ]
+},
+  {
+  "id": 8,
+  "theme": "theme-8",
+  "icon": "💻",
+  "title": "My First Algorithm",
+  "shortDesc": "Program the micro:bit with MicroCode — use variables and conditions to build a button counter.",
+  "subject": "Design & Technology",
+  "forms": [
+    "Standard 6 D&T – Ch 2",
+    "Form 1 D&T – Ch 3"
+  ],
+  "chapters": [
+    "Chapter 2: Elements in an Electronic System (Standard 6)",
+    "Chapter 3: Development of Algorithm (Form 1)"
+  ],
+  "tags": [
+    "D&T",
+    "Standard 6",
+    "Form 1",
+    "Algorithm",
+    "MicroCode",
+    "Conditions"
+  ],
+  "objectives": [
+    "Understand the concept of an algorithm and represent it as a sequence of logical steps.",
+    "Implement a conditional structure to compare values and respond to input.",
+    "Interact with the actuators — LED display and buzzer — using programmed logic."
+  ],
+  "steps": [
+    "Open <strong>MicroCode</strong> on your micro:bit. Create a variable called <strong>A</strong> and set its starting value to 0.",
+    "Add a rule: every time <strong>Button A</strong> is pressed, increase variable A by 1 and show its current value on the LED display.",
+    "Create a second variable called <strong>B</strong>, also starting at 0. When <strong>Button B</strong> is pressed, increase variable B by 1 and show its value.",
+    "Add a comparison rule: after each button press, check which variable is greater — display A if A is greater, display B if B is greater, or display = if they are the same.",
+    "<strong>Challenge:</strong> Add a third rule — when the <strong>logo is touched</strong>, play a short melody using the buzzer.",
+    "Pair up with a classmate and compare your programs. Did you use the same blocks and logic? Were there different ways to achieve the same result?"
+  ],
+  "conclusion": "This experiment demonstrates three fundamental algorithmic structures: sequence (steps happen in order), selection (conditions decide which path to take), and the use of variables to store changing data. Writing a program is essentially writing an algorithm — a precise, step-by-step set of instructions. The same logic structures used here appear in every programming language, from MicroCode on a micro:bit to Python, JavaScript, and beyond.",
+  "questions": [
+    "Before you started coding, could you write out the steps of your program in plain English? What do we call this kind of step-by-step plan?",
+    "What type of algorithm structure did you use when comparing variables A and B — sequence, loop, or selection? Explain your choice.",
+    "What happened when both variables were equal? How did your program handle that case, and why is it important to plan for all possible outcomes?"
+  ]
+},
+  {
+  "id": 9,
+  "theme": "theme-9",
+  "icon": "📡",
+  "title": "Radio Communication",
+  "shortDesc": "Program radio communication between two micro:bits, then design and present your own mini-project.",
+  "subject": "Design & Technology",
+  "forms": [
+    "Standard 6 D&T – Ch 3"
+  ],
+  "chapters": [
+    "Chapter 3: Combinations of Technology (Standard 6)"
+  ],
+  "tags": [
+    "D&T",
+    "Standard 6",
+    "Radio",
+    "Communication",
+    "Design Challenge"
+  ],
+  "objectives": [
+    "Be creative in combining sensors, actuators, and programming skills from previous experiments.",
+    "Program radio communication between two micro:bit devices.",
+    "Present and communicate a self-designed micro:bit project to the class."
+  ],
+  "steps": [
+    "Work in pairs — each person holds one micro:bit.",
+    "In MicroCode, set <strong>both</strong> micro:bits to the same radio group number (e.g., group 1) using the radio set group block.",
+    "On <strong>Device A (transmitter)</strong>: add a block so that when Button A is pressed, it sends a message via radio.",
+    "On <strong>Device B (receiver)</strong>: add an on-radio-received block that displays the incoming message on the LED screen.",
+    "Flash both programs. Press Button A on Device A — does Device B react?",
+    "<strong>Extend it:</strong> modify Device A to also send the current <strong>temperature</strong> reading. Display it on Device B as a number.",
+    "<strong>Design challenge (15 min):</strong> In your pair, design a mini-project using radio and at least one sensor. Ideas: a wireless doorbell, a two-player quiz buzzer, or a plant monitor that sends an alert. Sketch your idea on paper.",
+    "Present your design to the class — explain what problem it solves, what sensors/actuators you used, and how radio connects the two devices."
+  ],
+  "conclusion": "Radio communication allows two micro:bits to exchange data wirelessly by transmitting and receiving signals on a shared radio group (channel). This mirrors how real wireless systems work — from Wi-Fi and Bluetooth to weather stations and IoT devices. Combining radio with other sensors and actuators opens up endless design possibilities. This experiment challenges students to think like engineers: identifying a real problem, designing a solution, building it, and communicating their ideas.",
+  "questions": [
+    "What radio group number did you use? Why is it important that both micro:bits share the same group?",
+    "How is radio communication similar to, and different from, a wired connection between two devices?",
+    "Describe the project you designed. What would you improve if you had more time?"
+  ]
+}
+];
+
+// ─── RENDER CARDS ────────────────────────────────────────────
+function renderCards() {
+  const grid = document.getElementById('expGrid');
+  grid.innerHTML = experiments.map(exp => `
+    <div class="exp-card ${exp.theme}" onclick="openModal(${exp.id})">
+      <div class="exp-card-header">
+        <div class="exp-icon">${exp.icon}</div>
+        <div>
+          <div class="exp-num">Experiment ${exp.id}</div>
+          <div class="exp-title">${exp.title}</div>
+          <div class="exp-desc">${exp.shortDesc}</div>
+        </div>
+      </div>
+      <div class="exp-card-body">
+        <div class="tag-row">${exp.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div style="font-size:.82rem;color:var(--text-muted);">
+          <strong style="color:var(--text);">Forms:</strong> ${exp.forms.join(' · ')}
+        </div>
+      </div>
+      <div class="exp-card-footer">
+        <span>View full lesson plan</span>
+        <span>→</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── MODAL ───────────────────────────────────────────────────
+function openModal(id) {
+  const exp = experiments.find(e => e.id === id);
+  if (!exp) return;
+
+  document.getElementById('modalHeader').innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="exp-icon" style="background:var(--bg);font-size:1.8rem;width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;">${exp.icon}</div>
+      <div>
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:2px;">Experiment ${exp.id} · ${exp.subject}</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.3rem;color:var(--navy);">${exp.title}</div>
+      </div>
+    </div>
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+  `;
+
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-section">
+      <div class="modal-section-title">Curriculum Alignment</div>
+      <div class="info-grid">
+        ${exp.forms.map((f, i) => `
+          <div class="info-cell">
+            <div class="info-cell-label">${f}</div>
+            <div class="info-cell-value">${exp.chapters[i] || ''}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Learning Objectives</div>
+      <ul>
+        ${exp.objectives.map(o => `<li>${o}</li>`).join('')}
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Step-by-Step Procedure</div>
+      <ol>
+        ${exp.steps.map(s => `<li>${s}</li>`).join('')}
+      </ol>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Conclusion</div>
+      <p>${exp.conclusion}</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">Questions for Student Reflection</div>
+      <ul class="q-list">
+        ${exp.questions.map(q => `<li>${q}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModalBtn() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalBtn();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+// ─── INIT ─────────────────────────────────────────────────────
+renderCards();
+</script>
+
+
+</body>
+</html>
