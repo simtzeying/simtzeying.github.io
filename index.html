@@ -2,10 +2,416 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=about.html">
-  <title>Dr. Tze Ying Sim Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Dr. Tze Ying Sim</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* About-page specific styles */
+    .about-hero {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      align-items: flex-start;
+      margin-bottom: 2.5rem;
+    }
+    .photo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .photo-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      border: 2px solid var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+    .photo-initials {
+      font-size: 40px;
+      font-weight: 500;
+      color: var(--blue-mid);
+      user-select: none;
+      letter-spacing: -1px;
+    }
+    .hero-text { }
+    .hero-name {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .hero-title {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 2px;
+    }
+    .hero-affil {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      margin-bottom: 1rem;
+    }
+    .brand-statement {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--blue-mid);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+    .hero-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hero-link {
+      font-size: 12px;
+      padding: 5px 14px;
+      border-radius: var(--radius-md);
+      border: 0.5px solid var(--border-light);
+      color: var(--text-secondary);
+      background: var(--bg-white);
+      transition: background 0.15s;
+    }
+    .hero-link:hover { background: var(--bg-surface); text-decoration: none; }
+    .hero-link.primary { background: var(--blue-light); color: var(--blue-dark); border-color: transparent; }
+
+    /* Story section */
+    .story-section { margin-bottom: 2.5rem; }
+    .story-text {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+    .story-highlight {
+      border-left: 3px solid var(--blue);
+      background: #f5f9fe;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .story-highlight p {
+      font-size: 15px;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 1.75rem; margin-bottom: 2.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      background: var(--border-light);
+    }
+    .timeline-item { position: relative; margin-bottom: 1.5rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -1.95rem;
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--bg-white);
+      border: 2px solid var(--border-mid);
+    }
+    .timeline-dot.highlight { border-color: var(--blue); background: var(--blue-light); }
+    .timeline-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .timeline-role { font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+    .timeline-place { font-size: 13px; color: var(--text-secondary); }
+    .timeline-note { font-size: 12px; color: var(--text-tertiary); font-style: italic; margin-top: 3px; }
+
+    /* Qualifications */
+    .qual-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 1rem; }
+    .qual-card {
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 0.85rem 1rem;
+      background: var(--bg-white);
+    }
+    .qual-degree { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 3px; line-height: 1.4; }
+    .qual-field { font-size: 12px; color: var(--blue-mid); margin-bottom: 2px; }
+    .qual-inst { font-size: 12px; color: var(--text-secondary); }
+    .qual-year { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
+    .qual-section-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin: 1.25rem 0 0.65rem;
+    }
+    .further-qual-list { display: flex; flex-direction: column; gap: 8px; }
+    .further-qual-item {
+      border: 0.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.85rem;
+      background: var(--bg-surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .further-qual-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+    .further-qual-inst { font-size: 12px; color: var(--text-secondary); }
+    .further-qual-year { font-size: 11px; color: var(--text-tertiary); white-space: nowrap; flex-shrink: 0; }
+
+    /* Research teaser */
+    .research-teaser {
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .research-teaser h3 { font-size: 15px; font-weight: 500; margin-bottom: 5px; }
+    .research-teaser p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; max-width: 520px; }
+
+    @media (max-width: 680px) {
+      .about-hero { grid-template-columns: 1fr; }
+      .photo-wrap { flex-direction: row; gap: 1rem; align-items: center; }
+      .photo-circle { width: 90px; height: 90px; flex-shrink: 0; }
+      .qual-grid { grid-template-columns: 1fr; }
+      .further-qual-item { flex-direction: column; gap: 4px; }
+      .research-teaser { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-  <p>Redirecting... <a href="about.html">Click here if not redirected.</a></p>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Assoc. Prof. Ts. Dr.–Ing. Sim, Tze Ying <span>| Sunway University</span></div>
+    <ul class="nav-links">
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="research.html">Research &amp; Projects</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="container">
+
+    <p class="breadcrumb"><a href="index.html">Home</a> › <span>About</span></p>
+
+    <!-- ===== HERO ===== -->
+    <div class="about-hero">
+      <div class="photo-wrap">
+        <div class="photo-circle" id="photoCircle">
+          <img src="images/profile%20photo.jpeg" alt="Dr. Tze Ying Sim"
+               onerror="this.style.display='none'; document.getElementById('photoInitials').style.display='block';">
+          <span class="photo-initials" id="photoInitials" style="display:none;">TY</span>
+        </div>
+      </div>
+      <div class="hero-text">
+        <h1 class="hero-name">Assoc. Prof. Ts. Dr.–Ing.<br>Sim, Tze Ying</h1>
+        <p class="hero-title">Associate Professor · School of Computing and Artificial Intelligence</p>
+        <p class="hero-affil">Faculty of Engineering and Technology · Sunway University, Malaysia</p>
+        <p class="brand-statement">"Educator by heart. Technologist in practice."</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- ===== MY STORY ===== -->
+    <div class="story-section" id="story">
+      <p class="section-label">My story</p>
+
+      <p class="story-text">I came to computing education research not through a grand plan, but through something I saw in my own classroom that I simply could not unsee.</p>
+
+      <p class="story-text">Early in my career as a university programming lecturer, I noticed that my first-year students' marks did not form the bell curve I expected. They formed a U-shape. Students scoring As had one thing in common: they had been exposed to programming before university. Students with Ds and Fs had another thing in common: they had not. The class was not dividing along lines of intelligence or effort. It was dividing along lines of access.</p>
+
+      <div class="story-highlight">
+        <p>"The difference was not ability. It was access. And that gap had been built into the system long before any of my students walked into my classroom."</p>
+      </div>
+
+      <p class="story-text">When I looked into why, the picture became clear. Computer Science is an elective subject at SPM level — Malaysia's national secondary school examination — and it is largely offered by schools that already have computer laboratories, qualified teachers, and the infrastructure to support it. Better-equipped and private schools tend to have these resources. Under-resourced national schools often do not. The result is that students from lower-income communities arrive at university already behind, through no fault of their own.</p>
+
+      <p class="story-text">That observation became a question I have spent my career trying to answer: how do we make quality computing education genuinely available to every student, regardless of where they grow up, which school they attend, or what resources their family can afford?</p>
+
+      <p class="story-text">My research uses low-cost, accessible technology — particularly the BBC micro:bit — to bring programming education into schools that cannot afford dedicated computer laboratories. Through the BEST Programme, we reached over 200 lower secondary students across three Malaysian schools. Through collaborations with universities in the United Kingdom, El Salvador, and Finland, we are testing and scaling this approach internationally. The work is empirically grounded, teacher-informed, and aligned with SDG 4 (Quality Education) and SDG 10 (Reducing Inequalities).</p>
+
+      <p class="story-text">I am an educator by heart and a technologist in practice. I believe technology can bring about positive transformation when it is designed with the right values — and that education is one of the most powerful engines of social mobility we have. My goal is to make sure that engine is available to everyone, not just those born close to it.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== CAREER TIMELINE ===== -->
+    <p class="section-label">Career journey</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot highlight"></div>
+        <p class="timeline-date">2025 – Present</p>
+        <p class="timeline-role">Associate Professor</p>
+        <p class="timeline-place">School of Computing and Artificial Intelligence, Faculty of Engineering and Technology · Sunway University, Malaysia</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2023 – 2025</p>
+        <p class="timeline-role">Associate Professor · Dean, School of American Education</p>
+        <p class="timeline-place">Sunway University, Malaysia</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2022 – 2023</p>
+        <p class="timeline-role">Associate Professor · Associate Dean International &amp; Head of Centre for American Education</p>
+        <p class="timeline-place">Sunway University, Malaysia</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2020 – 2021</p>
+        <p class="timeline-role">Associate Professor · Head of Centre for American Education</p>
+        <p class="timeline-place">Sunway University, Malaysia</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2015 – 2019</p>
+        <p class="timeline-role">Senior Lecturer · Head of Centre for American Education</p>
+        <p class="timeline-place">Sunway University, Malaysia</p>
+        <p class="timeline-note">Where the U-curve observation led to the research programme that defines my work today.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2013 – 2014</p>
+        <p class="timeline-role">Lecturer</p>
+        <p class="timeline-place">Centre for American Education · Sunway University, Malaysia</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot highlight"></div>
+        <p class="timeline-date">2006 – 2013</p>
+        <p class="timeline-role">Researcher · Doctoral Candidate</p>
+        <p class="timeline-place">University Kassel, Germany · Supervised by Prof. Vogel-Heuser</p>
+        <p class="timeline-note">Dr.–Ing. (Engineering Education) conferred 2010. Research on active learning in large interdisciplinary classes, automation engineering, and variable modelling.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2005 – 2006</p>
+        <p class="timeline-role">Project Management</p>
+        <p class="timeline-place">Freelance</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">2000 – 2005</p>
+        <p class="timeline-role">System Engineer</p>
+        <p class="timeline-place">Motorola, Malaysia</p>
+        <p class="timeline-note">Industry grounding in systems engineering before pivoting to research and education.</p>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <!-- ===== QUALIFICATIONS ===== -->
+    <p class="section-label">Academic qualifications</p>
+
+    <div class="qual-grid">
+      <div class="qual-card">
+        <p class="qual-degree">Dr.–Ing. (Doctor of Engineering)</p>
+        <p class="qual-field">Engineering Education</p>
+        <p class="qual-inst">University Kassel, Germany</p>
+        <p class="qual-year">2010</p>
+      </div>
+      <div class="qual-card">
+        <p class="qual-degree">Master of Science</p>
+        <p class="qual-field">Computer Science · Software Engineering</p>
+        <p class="qual-inst">Universiti Putra Malaysia</p>
+        <p class="qual-year">2003</p>
+      </div>
+      <div class="qual-card">
+        <p class="qual-degree">Bachelor of Computer Science</p>
+        <p class="qual-field">Computer Science</p>
+        <p class="qual-inst">Universiti Putra Malaysia</p>
+        <p class="qual-year">2000</p>
+      </div>
+    </div>
+
+    <p class="qual-section-title">Further qualifications</p>
+    <div class="further-qual-list">
+      <div class="further-qual-item">
+        <div>
+          <p class="further-qual-name">Introduction to the Use of Artificial Intelligence in Higher Education (FD107)</p>
+          <p class="further-qual-inst">Arizona State University</p>
+        </div>
+        <span class="further-qual-year">2024</span>
+      </div>
+      <div class="further-qual-item">
+        <div>
+          <p class="further-qual-name">Post Graduate Higher Education Certificate</p>
+          <p class="further-qual-inst">Lancaster University, United Kingdom</p>
+        </div>
+        <span class="further-qual-year">2018</span>
+      </div>
+    </div>
+
+    <!-- ===== CTA ===== -->
+    <div class="cta-band">
+      <div>
+        <h3>Let's connect</h3>
+        <p>Whether you are a researcher, an educator, a school looking for partners, or a funder interested in equity in STEM — I would love to hear from you.</p>
+      </div>
+      <div class="btn-row">
+        <a href="mailto:tzeyings@sunway.edu.my" class="btn">Email me</a>
+        <a href="contact.html" class="btn btn-primary">Get in touch →</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-name">Assoc. Prof. Ts. Dr.–Ing. Sim, Tze Ying</p>
+      <p class="footer-affil">School of Computing and Artificial Intelligence, Sunway University</p>
+      <a href="mailto:tzeyings@sunway.edu.my" class="footer-email">tzeyings@sunway.edu.my</a>
+    </div>
+    <div class="footer-links">
+      <a href="https://scholar.google.com/citations?user=vHaWs4kAAAAJ&hl=en" target="_blank">Google Scholar</a>
+      <a href="publications.html">Publications</a>
+      <a href="contact.html">Get in touch</a>
+    </div>
+  </div>
+  <p class="footer-copy">© 2026 Sim, Tze Ying. Sunway University, Malaysia.</p>
+</footer>
+
 </body>
 </html>
